@@ -37,9 +37,14 @@ class Presentation extends React.Component {
       e.preventDefault();
       const q = {pageNumber:this.state.pageNumber, question:e.target.Question.value};
       this.state.questions.push(q);
-      this.forceUpdate();
+      this.setState({currentQuestion:""});
+      //this.forceUpdate();
   }
  
+  updateCurrentQuestion = (e) => {
+    this.setState({currentQuestion:e.target.value});
+  }
+
   render() {
     const { pageNumber, numPages } = this.state;
  
@@ -65,6 +70,7 @@ class Presentation extends React.Component {
           value={this.state.currentQuestion}
           margin="normal"
           variant="outlined"
+          onChange={this.updateCurrentQuestion}
         />
         <Button 
         variant="contained"
